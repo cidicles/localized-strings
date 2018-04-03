@@ -22,8 +22,8 @@ const placeholderRegex = /(\{[\d|\w]+\})/;
 export default class LocalizedStrings {
     /**
      * Get the best match based on the language passed and the available languages
-     * @param {*} language 
-     * @param {*} props 
+     * @param {*} language
+     * @param {*} props
      */
     _getBestMatchingLanguage(language, props) {
         //If an object with the passed language key exists return it
@@ -38,7 +38,7 @@ export default class LocalizedStrings {
     /**
      * Constructor used to provide the strings objects in various language and the optional callback to get
      * the interface language
-     * @param {*} props - the strings object 
+     * @param {*} props - the strings object
      * @param {*} getInterfaceLanguageCallback - the optional method to use to get the InterfaceLanguage
      */
     constructor(props, getInterfaceLanguageCallback) {
@@ -53,7 +53,7 @@ export default class LocalizedStrings {
 
     /**
      * Set the strings objects based on the parameter passed in the constructor
-     * @param {*} props 
+     * @param {*} props
      */
     setContent(props){
         this._defaultLanguage = Object.keys(props)[0];
@@ -67,6 +67,7 @@ export default class LocalizedStrings {
                     this._defaultLanguageFirstLevelKeys.push(key);
                 }
             }
+
         //Set language to its default value (the interface)
         this.setLanguage(this._interfaceLanguage);
     }
@@ -74,7 +75,7 @@ export default class LocalizedStrings {
     /**
      * Can be used from ouside the class to force a particular language
      * indipendently from the interface one
-     * @param {*} language 
+     * @param {*} language
      */
     setLanguage(language) {
         //Check if exists a translation for the current language or if the default
@@ -95,17 +96,20 @@ export default class LocalizedStrings {
                 }
             }
             //Now add any string missing from the translation but existing in the default language
+            /*
             if (defaultLanguage !== this._language) {
                 localizedStrings = this._props[defaultLanguage];
                 this._fallbackValues(localizedStrings, this);
             }
+            */
+
         }
     }
 
     /**
      * Load fallback values for missing translations
-     * @param {*} defaultStrings 
-     * @param {*} strings 
+     * @param {*} defaultStrings
+     * @param {*} strings
      */
     _fallbackValues(defaultStrings, strings) {
         for (let key in defaultStrings) {
@@ -138,7 +142,7 @@ export default class LocalizedStrings {
 
     /**
      * Return an array containing the available languages passed as props in the constructor
-     */ 
+     */
     getAvailableLanguages() {
         if (!this._availableLanguages) {
             this._availableLanguages = [];
@@ -193,7 +197,7 @@ export default class LocalizedStrings {
 
      /**
       * The current props (locale object)
-      */ 
+      */
      getContent() {
         return this._props;
     }
